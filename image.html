@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Studio - Image Generator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            background: #2e1065;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #f3e8ff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            color: #d8b4fe;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #e9d5ff;
+            box-shadow: 0 12px 40px rgba(46, 16, 101, 0.12);
+        }
+
+        .icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #2e1065;
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin: 12px 0 30px;
+        }
+
+        /* INPUT */
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #d8b4fe;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #7e22ce;
+            box-shadow: 0 0 0 3px rgba(126, 34, 206, 0.10);
+        }
+
+        /* BUTTONS */
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            background: #4c1d95;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #6b21a8;
+            transform: translateY(-2px);
+        }
+
+        .back {
+            background: #f3e8ff;
+            color: #4c1d95;
+        }
+
+        .back:hover {
+            background: #e9d5ff;
+        }
+
+        /* IMAGE */
+
+        .result-title {
+            display: none;
+            color: #4c1d95;
+            margin-top: 30px;
+        }
+
+        img {
+            margin-top: 15px;
+            width: 100%;
+            max-height: 600px;
+            object-fit: contain;
+            border-radius: 15px;
+            display: none;
+            border: 1px solid #e9d5ff;
+            box-shadow: 0 8px 25px rgba(46, 16, 101, 0.12);
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .container {
+                margin: 30px auto;
+            }
+
+            .box {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            🚀 AI Studio
+        </div>
+
+        <div>
+            <a href="index.html">Home</a>
+            <a href="writer.html">Writer</a>
+            <a href="chat.html">Chatbot</a>
+        </div>
+
+    </nav>
+
+
+    <!-- IMAGE GENERATOR -->
+
+    <div class="container">
+
+        <div class="box">
+
+            <div class="icon">
+                🖼️
+            </div>
+
+            <h1>
+                AI Image Generator
+            </h1>
+
+            <p class="subtitle">
+                Turn your imagination into an image.
+            </p>
+
+
+            <input
+                type="text"
+                id="prompt"
+                placeholder="Describe the image you want..."
+            >
+
+
+            <button onclick="generateImage()">
+                ✨ Generate Image
+            </button>
+
+
+            <h3 id="resultTitle" class="result-title">
+                Your Generated Image
+            </h3>
+
+
+            <img id="result">
+
+
+            <button
+                class="back"
+                onclick="window.location.href='index.html'"
+            >
+                ← Back to Dashboard
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function generateImage() {
+
+            const prompt =
+                document
+                .getElementById("prompt")
+                .value
+                .trim();
+
+
+            if (prompt === "") {
+
+                alert("Please enter a prompt");
+
+                return;
+            }
+
+
+            const imageUrl =
+                "https://image.pollinations.ai/prompt/" +
+                encodeURIComponent(prompt);
+
+
+            const result =
+                document.getElementById("result");
+
+            const resultTitle =
+                document.getElementById("resultTitle");
+
+
+            result.src = imageUrl;
+
+            result.style.display = "block";
+
+            resultTitle.style.display = "block";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

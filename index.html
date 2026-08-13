@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Studio Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #1f1f1f;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            background: #2e1065;
+            padding: 18px 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 15px rgba(46, 16, 101, 0.2);
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #f3e8ff;
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #d8b4fe;
+        }
+
+        .logout {
+            background: #7e22ce;
+            color: white;
+            border: none;
+            padding: 9px 17px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .logout:hover {
+            background: #9333ea;
+            transform: translateY(-2px);
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 55px;
+            background: linear-gradient(
+                180deg,
+                #faf5ff 0%,
+                #ffffff 100%
+            );
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #f3e8ff;
+            color: #6b21a8;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 48px;
+            color: #2e1065;
+        }
+
+        .hero h1 span {
+            color: #6b21a8;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 18px;
+            margin: 18px 0 0;
+        }
+
+        /* TOOLS */
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #2e1065;
+            font-size: 28px;
+            margin: 15px 0 30px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            position: relative;
+            background: white;
+            border: 1px solid #e9d5ff;
+            padding: 35px 28px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(46, 16, 101, 0.08);
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #6b21a8;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #c084fc;
+            box-shadow: 0 15px 35px rgba(46, 16, 101, 0.16);
+        }
+
+        .icon-box {
+            width: 75px;
+            height: 75px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f3e8ff;
+            border-radius: 18px;
+            font-size: 38px;
+        }
+
+        .card h2 {
+            color: #4c1d95;
+            margin: 20px 0 12px;
+            font-size: 21px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            min-height: 52px;
+            margin-bottom: 20px;
+        }
+
+        .card button {
+            width: 100%;
+            padding: 14px;
+            background: #4c1d95;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .card button:hover {
+            background: #6b21a8;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+
+        .footer {
+            margin-top: 55px;
+            padding: 30px 20px;
+            text-align: center;
+            background: #2e1065;
+            color: #e9d5ff;
+        }
+
+        .footer strong {
+            color: white;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            nav {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 55px 20px 40px;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            🚀 AI Studio
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="image.html">Image</a>
+
+            <a href="writer.html">Writer</a>
+
+            <a href="chat.html">Chatbot</a>
+
+            <button class="logout" onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-badge">
+            ✨ AI POWERED WORKSPACE
+        </div>
+
+        <h1>
+            Welcome to <span>AI Studio</span> 🤖
+        </h1>
+
+        <p>
+            Create, write and chat with powerful AI tools.
+        </p>
+
+    </section>
+
+
+    <!-- TOOLS -->
+
+    <div class="container">
+
+        <h2 class="section-title">
+            Explore AI Tools
+        </h2>
+
+        <div class="cards">
+
+
+            <!-- IMAGE -->
+
+            <div class="card">
+
+                <div class="icon-box">
+                    🖼️
+                </div>
+
+                <h2>
+                    AI Image Generator
+                </h2>
+
+                <p>
+                    Turn your ideas into amazing AI-generated images.
+                </p>
+
+                <button
+                    onclick="window.location.href='image.html'"
+                >
+                    Generate Image
+                </button>
+
+            </div>
+
+
+            <!-- WRITER -->
+
+            <div class="card">
+
+                <div class="icon-box">
+                    ✍️
+                </div>
+
+                <h2>
+                    AI Content Writer
+                </h2>
+
+                <p>
+                    Create paragraphs, articles and creative content with AI.
+                </p>
+
+                <button
+                    onclick="window.location.href='writer.html'"
+                >
+                    Write Content
+                </button>
+
+            </div>
+
+
+            <!-- CHATBOT -->
+
+            <div class="card">
+
+                <div class="icon-box">
+                    🤖
+                </div>
+
+                <h2>
+                    AI Chatbot
+                </h2>
+
+                <p>
+                    Ask questions and chat with your AI assistant.
+                </p>
+
+                <button
+                    onclick="window.location.href='chat.html'"
+                >
+                    Start Chat
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        🚀 <strong>AI Studio</strong>
+        — Your personal AI workspace 💜
+
+    </div>
+
+
+    <script>
+
+        // LOGIN PROTECTION
+
+        const user =
+            localStorage.getItem("aiStudioUser");
+
+        if (!user) {
+            window.location.href = "login.html";
+        }
+
+
+        // LOGOUT
+
+        function logout() {
+
+            localStorage.removeItem("aiStudioUser");
+
+            alert("Logged out successfully! 👋");
+
+            window.location.href = "login.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

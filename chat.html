@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Studio - Chatbot</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            background: #2e1065;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #f3e8ff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            color: #d8b4fe;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 850px;
+            margin: 45px auto;
+            padding: 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #e9d5ff;
+            box-shadow: 0 12px 40px rgba(46, 16, 101, 0.12);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .icon {
+            font-size: 50px;
+        }
+
+        h1 {
+            color: #2e1065;
+            margin: 8px 0;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin: 0;
+        }
+
+        /* CHAT */
+
+        #chat {
+            height: 380px;
+            overflow-y: auto;
+            border: 1px solid #e9d5ff;
+            border-radius: 14px;
+            padding: 18px;
+            text-align: left;
+            background: #faf5ff;
+        }
+
+        .user {
+            margin: 12px 0;
+            margin-left: 15%;
+            padding: 12px 15px;
+            background: #4c1d95;
+            color: white;
+            border-radius: 14px 14px 3px 14px;
+        }
+
+        .bot {
+            margin: 12px 0;
+            margin-right: 15%;
+            padding: 12px 15px;
+            background: white;
+            color: #333;
+            border: 1px solid #e9d5ff;
+            border-radius: 14px 14px 14px 3px;
+            line-height: 1.5;
+        }
+
+        /* INPUT */
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        input {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid #d8b4fe;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #7e22ce;
+            box-shadow: 0 0 0 3px rgba(126, 34, 206, 0.10);
+        }
+
+        .send {
+            width: 120px;
+            padding: 14px;
+            background: #4c1d95;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .send:hover {
+            background: #6b21a8;
+        }
+
+        .back {
+            width: 100%;
+            padding: 13px;
+            margin-top: 15px;
+            background: #f3e8ff;
+            color: #4c1d95;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .back:hover {
+            background: #e9d5ff;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .container {
+                margin: 20px auto;
+            }
+
+            .box {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            #chat {
+                height: 330px;
+            }
+
+            .user {
+                margin-left: 5%;
+            }
+
+            .bot {
+                margin-right: 5%;
+            }
+
+            .input-area {
+                flex-direction: column;
+            }
+
+            .send {
+                width: 100%;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            🚀 AI Studio
+        </div>
+
+        <div>
+            <a href="index.html">Home</a>
+            <a href="image.html">Image</a>
+            <a href="writer.html">Writer</a>
+        </div>
+
+    </nav>
+
+
+    <!-- CHATBOT -->
+
+    <div class="container">
+
+        <div class="box">
+
+            <div class="header">
+
+                <div class="icon">
+                    🤖
+                </div>
+
+                <h1>
+                    AI Chatbot
+                </h1>
+
+                <p class="subtitle">
+                    Chat with your AI assistant.
+                </p>
+
+            </div>
+
+
+            <div id="chat">
+
+                <div class="bot">
+                    Hello! 👋 How can I help you today?
+                </div>
+
+            </div>
+
+
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    id="message"
+                    placeholder="Type your message..."
+                    onkeydown="handleEnter(event)"
+                >
+
+                <button
+                    class="send"
+                    onclick="sendMessage()"
+                >
+                    Send
+                </button>
+
+            </div>
+
+
+            <button
+                class="back"
+                onclick="window.location.href='index.html'"
+            >
+                ← Back to Dashboard
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function handleEnter(event) {
+
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+
+        }
+
+
+        async function sendMessage() {
+
+            const message =
+                document
+                .getElementById("message")
+                .value
+                .trim();
+
+            const chat =
+                document.getElementById("chat");
+
+
+            if (message === "") {
+
+                alert("Please type a message");
+
+                return;
+            }
+
+
+            const userMessage =
+                document.createElement("div");
+
+            userMessage.className = "user";
+
+            userMessage.innerText =
+                "You: " + message;
+
+            chat.appendChild(userMessage);
+
+
+            document.getElementById("message").value = "";
+
+
+            const botMessage =
+                document.createElement("div");
+
+            botMessage.className = "bot";
+
+            botMessage.innerText =
+                "AI is thinking... 🤔";
+
+            chat.appendChild(botMessage);
+
+
+            chat.scrollTop =
+                chat.scrollHeight;
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://localhost:3000/generate-text",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                prompt: message
+                            })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    botMessage.innerText =
+                        "Error: " +
+                        JSON.stringify(data);
+
+                    return;
+                }
+
+
+                botMessage.innerText =
+                    "AI: " + data.text;
+
+
+                chat.scrollTop =
+                    chat.scrollHeight;
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                botMessage.innerText =
+                    "Cannot connect to server!";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
