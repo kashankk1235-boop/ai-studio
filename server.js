@@ -12,7 +12,7 @@ const ai = new GoogleGenAI({
 
 app.use(cors());
 app.use(express.json());
-
+app.use(express.static(__dirname));
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
