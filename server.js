@@ -14,9 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("AI Studio Server Running 🚀");
+    res.sendFile(__dirname + "/index.html");
 });
-
 app.post("/generate-text", async (req, res) => {
     try {
         const { prompt } = req.body;
