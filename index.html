@@ -398,13 +398,14 @@
 
         // LOGIN PROTECTION
 
-        const user =
-            localStorage.getItem("aiStudioUser");
+       
+const user = localStorage.getItem("aiStudioUser");
 
-        if (!user) {
-            window.location.href = "login.html";
-        }
-
+if (!user) {
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 3000);
+}
 
         // LOGOUT
 
