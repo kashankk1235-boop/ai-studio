@@ -13,9 +13,11 @@ const ai = new GoogleGenAI({
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
+
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(__dirname + "/welcome.html");
 });
+
 app.post("/generate-text", async (req, res) => {
     try {
         const { prompt } = req.body;
@@ -47,5 +49,5 @@ app.post("/generate-text", async (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
